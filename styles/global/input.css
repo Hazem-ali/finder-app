@@ -1,0 +1,22 @@
+.input {
+  @apply sm:w-64 min-w-24 w-64 rounded-xl px-3 py-1 text-black border-2 animated-input;
+}
+
+.animated-input {
+  transition: padding 0.3s ease;
+}
+
+.animated-input::placeholder {
+  color: #aaa;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.animated-input:focus::placeholder {
+  opacity: 0.3;
+}
+
+.animated-input:focus {
+  padding-left: 1.3rem;
+  outline: none;
+}
