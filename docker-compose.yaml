@@ -1,0 +1,15 @@
+version: '3'
+services:
+  finder:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
+      - .:/app:/app/app
+      - .:/package.json:/app/package.json
+      - .:/tailwind.config.js:/app/tailwind.config.js
+      - /app/node_modules
+      
+    ports:
+      - 3000:3000
