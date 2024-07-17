@@ -1,0 +1,39 @@
+version: "3"
+services:
+
+  frontend:
+    build:
+      context: ./finder-app
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./finder-app:/app
+      - ./finder-app/app:/app/app
+      - ./finder-app/package.json:/app/package.json
+      - ./finder-app/tailwind.config.js:/app/tailwind.config.js
+      - /app/node_modules
+    ports:
+      - 3000:3000
+
+  db:
+    image: mysql:5.7.16
+    restart: always
+    environment:
+      MYSQL_DATABASE: finder
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - .dbdata:/var/lib/mysql
+    ports:
+      - 3300:3306
+
+  backend:
+    build: ./finder_backend
+    restart: always
+    volumes:
+      - ./finder_backend/:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - db

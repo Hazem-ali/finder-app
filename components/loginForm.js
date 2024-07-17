@@ -1,15 +1,33 @@
-'use client'
-import { useEffect, useState } from "react";
-import "../styles/global/input.css";
+"use client";
+import { useState } from "react";
 import styles from "../styles/global/button.module.css";
 import Input from "../common/input";
+import auth from "@/services/authService";
+import { useRouter } from "next/navigation";
 
-const Login = () => {
+const LoginForm = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const router = useRouter()
+  const handleLogin = async () => {
+    const data = {
+      email:"mofty@x.com",
+      password:"123",
+    };
+
+    const response = await auth.login(data)
+
+    console.log("Showing Response");
+    console.log(response);
+    if (response.status == 200) {
+      sessionStorage.setItem("data","login success")
+      router.push('/message')
+      
+    }
+  };
 
   return (
-    <div className="flex flex-col gap-4 min-h-screen justify-center items-center">
+    <div className="flex flex-col gap-4 justify-center items-center">
       <div className="grid grid-cols-1 gap-4 mx-4 justify-items-center  ">
         <Input
           type="email"
@@ -23,16 +41,12 @@ const Login = () => {
           name="login-password"
           id="login-password"
           placeholder="Password"
-          className="input"
           changeHandler={setPassword}
         />
 
         <button
           className={`${styles.btn} ${styles.bgPrimary} w-3/12`}
-          onClick={() => {
-            console.log(email);
-            console.log(password);
-          }}
+          onClick={handleLogin}
         >
           Login
         </button>
@@ -41,4 +55,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;

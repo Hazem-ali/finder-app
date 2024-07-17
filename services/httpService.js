@@ -1,5 +1,4 @@
 import axios from "axios";
-import { toast } from "react-toastify";
 // null is that we don't want to intercept successful responses
 axios.interceptors.response.use(null, (error) => {
   // called before the catch block
@@ -10,8 +9,8 @@ axios.interceptors.response.use(null, (error) => {
 
   if (!expectedError) {
     console.log("Logging the error", error);
-    toast.error("An unexpected error occuurred.");
   }
+  console.log(error.response.data[0])
   return Promise.reject(error);
 });
 

@@ -10,7 +10,7 @@ export default function Home() {
         <Navbar />
       </div>
       <HeroBackground imgSrc="/images/lens.jpg" hasOverlay={true}>
-        <div className="flex  md:flex-row flex-col text-center  w-4/6 justify-center ">
+        <div className="flex  md:flex-row flex-col text-center  w-4/6 justify-center items-center  ">
           <div>
             <h1 className="text-white font-bold text-7xl m-10">
               {appName}: Reuniting people

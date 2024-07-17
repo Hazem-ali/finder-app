@@ -1,11 +1,11 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "../styles/global/button.module.css";
 import Backdrop from "./backdrop";
 import Hamburger from "./hamburger";
 
-import useScrollPosition from "../components/hooks/useScrollPosition";
+import useScrollPosition from "../hooks/useScrollPosition";
 
 const SCROLL_THRESHOLD = 300;
 

@@ -9,7 +9,7 @@ const heroOverlayStyle = `
 const heroBackgroundStyle = `
     relative bg-no-repeat bg-cover
     w-full h-screen 
-    flex justify-center items-center
+    flex justify-center 
     z-10 
 `;
 const HeroBackground = ({ imgSrc, hasOverlay, children }) => {
