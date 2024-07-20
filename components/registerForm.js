@@ -34,14 +34,10 @@ const RegisterForm = () => {
       console.log(response);
       // TODO use redux to store user data
       const token = response.data.access;
-      localStorage.setItem("access_token", token);
+      auth.setToken(token);
       router.push("/home");
     } catch (error) {
-      if (error.response.data[0]) {
-        console.log(error.response.data[0]);
-      } else {
-        console.log(error.response.data);
-      }
+      console.log(error.response.data);
     }
 
     return;

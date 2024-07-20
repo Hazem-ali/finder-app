@@ -1,4 +1,4 @@
-"use client";
+
 import HeroBackground from "../../common/heroBackground";
 import { APP_NAME } from "@/constants/config";
 import styles from "../../styles/global/button.module.css";
@@ -15,7 +15,7 @@ export default function Home() {
             <h1 className="text-white text-3xl m-10">
               Our goal is to bring peace of mind by
               <p className="font-bold">
-                reuniting lost loved ones with their families.
+                connecting lost loved ones with their families.
               </p>
             </h1>
             <Button

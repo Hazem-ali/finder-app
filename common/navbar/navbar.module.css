@@ -1,0 +1,23 @@
+.mainNav {
+    @apply w-full fixed 
+    flex justify-between items-center 
+    py-2 px-6 shadow-xl z-50
+    transition-all duration-300 transform-gpu
+}
+
+.navLinksDiv {
+    @apply transition-all duration-300 md:static absolute
+    md:shadow-none shadow-xl md:h-fit h-[40vh] md:w-fit w-full
+    flex items-center justify-center z-10 left-0
+}
+
+.linkList {
+@apply flex md:flex-row flex-col items-center md:gap-9 gap-8
+}
+.linkListItem {
+@apply hover:scale-110 transition-transform font-bold
+}
+
+.activeLink {
+    @apply text-red duration-300
+}
