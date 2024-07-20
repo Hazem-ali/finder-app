@@ -1,7 +1,7 @@
 import React from "react";
 
 const barStyle =
-  "bg-[#dda046] w-full rounded-lg h-1 transition-all duration-300";
+  "bg-white w-full rounded-lg h-1 transition-all duration-300";
 
 const Hamburger = ({ isOpen, onClick }) => {
   const topBarAnimation = `${isOpen ? "rotate-45 translate-y-2.5" : ""}`;

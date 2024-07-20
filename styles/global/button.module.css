@@ -1,17 +1,16 @@
-.btn{
-
-    @apply w-32 min-w-24 self-center font-bold py-2 px-4 rounded-full  duration-500 hover:shadow-xl hover:scale-110  transition-all;
+.btn {
+  @apply w-32 min-w-24 text-white self-center font-bold py-2 px-4 rounded-full  duration-500 hover:shadow-xl hover:scale-110  transition-all;
 }
-.bigButton{
-
-    @apply w-48 min-w-24 self-center text-xl font-bold py-4 px-6 rounded-full  duration-500 hover:shadow-xl hover:scale-110  transition-all;
+.bigButton {
+  @apply w-48 min-w-24 self-center text-xl text-white font-bold py-4 px-6 rounded-full  duration-500 hover:shadow-xl hover:scale-110  transition-all;
 }
 .bgPrimary {
-    @apply bg-blue-500 hover:bg-blue-800 text-white ;
+  @apply bg-jeansBlue hover:bg-jeansBlueLighter text-white;
 }
 .bgComp {
-    @apply bg-[#f4a7a7] hover:bg-[#ea554b] hover:text-white ;
+  @apply bg-[#ffb9c9] hover:bg-[#ea554b] hover:text-white;
 }
-.bgCompBrown {
-    @apply bg-[#dda046] hover:bg-[#a7532d] hover:text-white ;
+.bgRed {
+  @apply bg-maroon hover:bg-red hover:text-white;
 }
+

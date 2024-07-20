@@ -1,49 +1,55 @@
 "use client";
-import buttonStyles from "../styles/global/button.module.css";
 import Input from "../common/input";
 import { useState } from "react";
 import auth from "@/services/authService";
 import { useRouter } from "next/navigation";
-
+import Button from "../common/button";
+import Select from "../common/select";
 const RegisterForm = () => {
-
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
-  const [mobile, setMobile] = useState();
+  const [gender, setGender] = useState();
+  const [phone, setPhone] = useState();
   const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [password_confirm, setPasswordConfirm] = useState();
+  const [dateOfBirth, setDateOfBirth] = useState();
 
-  const router = useRouter()
+  const router = useRouter();
 
-
-  const registerHandler =  () => {
-
+  const registerHandler = async () => {
     const data = {
       first_name: firstName,
       last_name: lastName,
-      dob: "2015-03-25",
-      email: email,
-      phone: mobile,
+      dob: dateOfBirth,
+      phone,
+      email,
+      gender,
       password,
-
+      password_confirm,
     };
-    const response = auth.register(data)
-
-    console.log("Showing Response");
-    console.log(response);
-
-    if (response.status == 200) {
-      router.push('/message', {xyz:"Success"})
-      
+    try {
+      const response = await auth.register(data);
+      console.log("Showing Response");
+      console.log(response);
+      // TODO use redux to store user data
+      const token = response.data.access;
+      localStorage.setItem("access_token", token);
+      router.push("/home");
+    } catch (error) {
+      if (error.response.data[0]) {
+        console.log(error.response.data[0]);
+      } else {
+        console.log(error.response.data);
+      }
     }
 
     return;
   };
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center">
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mx-4 justify-items-center">
+    <div className="flex flex-col  gap-4  justify-center items-center ">
+      <div className="grid grid-cols-1 gap-4 mx-4 justify-items-center">
         <Input
           type="text"
           name="register-first-name"
@@ -59,6 +65,24 @@ const RegisterForm = () => {
           placeholder="Last Name"
           changeHandler={setLastName}
         />
+
+        <Input
+          type="text"
+          name="register-dob"
+          id="register-dob"
+          placeholder="Date Of Birth"
+          value="2015-03-25"
+          changeHandler={setDateOfBirth}
+        />
+
+        <Select
+          options={[
+            { name: "Male", value: "m" },
+            { name: "Female", value: "f" },
+          ]}
+          onSelect={(item) => setGender(item)}
+          name="Select Gender"
+        />
         <Input
           type="email"
           name="register-email"
@@ -70,8 +94,8 @@ const RegisterForm = () => {
           type="text"
           name="register-phone"
           id="register-phone"
-          placeholder="Mobile Number"
-          changeHandler={setMobile}
+          placeholder="Phone Number"
+          changeHandler={setPhone}
         />
         <Input
           type="password"
@@ -85,14 +109,9 @@ const RegisterForm = () => {
           name="register-confirm-password"
           id="register-confirm-password"
           placeholder="Confirm Password"
-          changeHandler={setConfirmPassword}
+          changeHandler={setPasswordConfirm}
         />
-        <button
-          className={`${buttonStyles.btn} ${buttonStyles.bgPrimary} w-3/12 grid md:col-span-2`}
-          onClick={registerHandler}
-        >
-          Register
-        </button>
+        <Button text="Register" onClick={registerHandler} />
       </div>
     </div>
   );

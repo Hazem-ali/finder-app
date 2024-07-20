@@ -6,6 +6,7 @@ import Backdrop from "./backdrop";
 import Hamburger from "./hamburger";
 
 import useScrollPosition from "../hooks/useScrollPosition";
+import Button from "./button";
 
 const SCROLL_THRESHOLD = 300;
 
@@ -29,10 +30,10 @@ const Navbar = () => {
   const modifyNavOnScroll = useCallback(() => {
     if (isScrolledOverThreshold(SCROLL_THRESHOLD)) {
       // Scrolled, then modify nav
-      setNavScrollTheme("bg-[#e7cabb] text-black");
+      setNavScrollTheme("bg-jeansBlue text-white");
       setNavHeight("h-16");
     } else {
-      setNavScrollTheme("bg-red-100 text-black");
+      setNavScrollTheme("bg-darkBlue text-white");
       setNavHeight("h-20");
     }
   }, [isScrolledOverThreshold]);
@@ -42,7 +43,7 @@ const Navbar = () => {
   }, [modifyNavOnScroll]);
 
   return (
-    <header className="">
+    <header className="mb-20">
       <Backdrop show={isMenuOpen} onClick={toggleMenu} />
       <nav
         className={`${navScrollTheme} flex w-full ${navHeight} fixed justify-between items-center py-2 px-6 duration-300 shadow-xl z-50 transition-all transform-gpu`}
@@ -69,33 +70,42 @@ const Navbar = () => {
           >
             <li
               className={` hover:scale-105 transition-transform `}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                setIsMenuOpen(false);
+                scrollTo(0, 0);
+              }}
             >
-              <Link href="/">Home</Link>
+              <Link href="/home">Home</Link>
             </li>
             <li
               className={` hover:scale-105 transition-transform `}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                setIsMenuOpen(false);
+                scrollTo(0, 0);
+              }}
             >
               <Link href="/register">Customers</Link>
             </li>
             <li
               className={` hover:scale-105 transition-transform `}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                setIsMenuOpen(false);
+                scrollTo(0, 0);
+              }}
             >
               <Link href="/register">Start Hosting</Link>
             </li>
           </ul>
         </div>
 
-        <button
-          className={`text-black z-20 ${styles.bgCompBrown} ${styles.btn}`}
+        <Button
+          customClasses={`text-black z-20 ${styles.bgRed} ${styles.btn}`}
+          text="Login"
+          href="/login"
           onClick={() => {
             setIsMenuOpen(false);
           }}
-        >
-          Get Started
-        </button>
+        />
       </nav>
     </header>
   );

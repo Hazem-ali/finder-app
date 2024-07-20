@@ -10,7 +10,6 @@ axios.interceptors.response.use(null, (error) => {
   if (!expectedError) {
     console.log("Logging the error", error);
   }
-  console.log(error.response.data[0])
   return Promise.reject(error);
 });
 

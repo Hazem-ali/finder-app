@@ -1,7 +1,8 @@
 import LoginForm from "../../components/loginForm";
 import Divider from "@/common/divider";
-import styles from "../../styles/global/button.module.css";
 import GradientBackground from "../../common/gradientBackground";
+import Button from '../../common/button';
+import  btnStyles  from '@/styles/global/button.module.css';
 export default function Signin() {
   return (
     <div>
@@ -13,12 +14,10 @@ export default function Signin() {
             </h1>
             <LoginForm />
             <Divider text="OR"></Divider>
-            <h1 className="text-white font-bold text-2xl mb-10">
-              Register Easily
+            <h1 className="text-white font-bold text-2xl mb-10 select-none">
+              Create a new account 
             </h1>
-            <button className={`${styles.btn} ${styles.bgPrimary} w-3/12`}>
-              Register
-            </button>
+            <Button text="Register" href="/register" customClasses={`w-full grid ${btnStyles.btn} ${btnStyles.bgRed}`}/>
           </div>
         </div>
       </GradientBackground>

@@ -1,28 +1,22 @@
 "use client";
 import { useState } from "react";
-import styles from "../styles/global/button.module.css";
 import Input from "../common/input";
 import auth from "@/services/authService";
 import { useRouter } from "next/navigation";
+import Button from "../common/button";
 
 const LoginForm = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const router = useRouter()
+  const router = useRouter();
   const handleLogin = async () => {
-    const data = {
-      email:"mofty@x.com",
-      password:"123",
-    };
-
-    const response = await auth.login(data)
-
-    console.log("Showing Response");
-    console.log(response);
-    if (response.status == 200) {
-      sessionStorage.setItem("data","login success")
-      router.push('/message')
-      
+    try {
+      const response = await auth.login({ email, password });
+      localStorage.setItem("access_token", response.data.access);
+      localStorage.setItem("refresh_token", response.data.refresh);
+      router.push("/home");
+    } catch (error) {
+      console.error(error.response.data.detail);
     }
   };
 
@@ -44,12 +38,7 @@ const LoginForm = () => {
           changeHandler={setPassword}
         />
 
-        <button
-          className={`${styles.btn} ${styles.bgPrimary} w-3/12`}
-          onClick={handleLogin}
-        >
-          Login
-        </button>
+        <Button text="Login" onClick={handleLogin} />
       </div>
     </div>
   );

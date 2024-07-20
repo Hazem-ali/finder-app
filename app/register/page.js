@@ -1,7 +1,9 @@
+"use client";
 import Divider from "@/common/divider";
-import styles from "@/styles/global/button.module.css";
 import GradientBackground from "../../common/gradientBackground";
 import RegisterForm from "@/components/registerForm";
+import Button from "@/common/button";
+import btnStyles from "@/styles/global/button.module.css";
 export default function Register() {
   return (
     <div>
@@ -13,10 +15,10 @@ export default function Register() {
             </h1>
             <RegisterForm />
             <Divider text="OR"></Divider>
-
-            <button className={`${styles.btn} ${styles.bgPrimary} w-3/12`} >
-              Login
-            </button>
+            <h1 className="text-white font-bold text-2xl mb-10 select-none">
+              Already have an account?
+            </h1>
+            <Button text="Login" href="/login" bg={btnStyles.bgRed} />
           </div>
         </div>
       </GradientBackground>
