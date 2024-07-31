@@ -1,0 +1,3 @@
+Consider to make a main navbar for the home
+make the resusable navbar to have dynamic buttons based on the page
+make this home page to be welcome page and shown only if not logged in

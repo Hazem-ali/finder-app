@@ -8,14 +8,14 @@ const heroBackgroundStyle = `
     z-10 
 `;
 const GradientBackground = ({ gradientStyle, children }) => {
-  const backgroundStyle = {
+  const gradient = {
     background: gradientStyle,
   };
 
   return (
     <div
       className={`${heroBackgroundStyle}`}
-      style={backgroundStyle}
+      style={gradient}
     >
       {children}
     </div>

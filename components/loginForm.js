@@ -4,6 +4,7 @@ import Input from "../common/input";
 import auth from "@/services/authService";
 import { useRouter } from "next/navigation";
 import Button from "../common/button";
+import { REFRESH_TOKEN, TOKEN } from "@/constants/config";
 
 const LoginForm = () => {
   const [email, setEmail] = useState();
@@ -12,8 +13,8 @@ const LoginForm = () => {
   const handleLogin = async () => {
     try {
       const response = await auth.login({ email, password });
-      localStorage.setItem("access_token", response.data.access);
-      localStorage.setItem("refresh_token", response.data.refresh);
+      localStorage.setItem(TOKEN, response.data.access);
+      localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
       router.push("/home");
     } catch (error) {
       console.error(error.response.data.detail);
@@ -29,6 +30,7 @@ const LoginForm = () => {
           id="login-email"
           placeholder="Email Address"
           changeHandler={setEmail}
+          
         />
         <Input
           type="password"

@@ -1,6 +1,6 @@
 import React from "react";
 
-const heroOverlayStyle = `
+const overlayStyle = `
     before:absolute
     before:top-0 before:left-0 before:w-full before:h-full before:content-['']
     before:bg-black before:opacity-50 before:-z-10 
@@ -20,7 +20,7 @@ const HeroBackground = ({ imgSrc, hasOverlay, children }) => {
 
   return (
     <div
-      className={`${hasOverlay && heroOverlayStyle} ${heroBackgroundStyle}`}
+      className={`${hasOverlay && overlayStyle} ${heroBackgroundStyle}`}
       style={imgStyle}
     >
       {children}

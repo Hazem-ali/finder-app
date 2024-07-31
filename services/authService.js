@@ -1,5 +1,7 @@
+import {jwtDecode} from "jwt-decode";
+
 import http from "./httpService";
-import { BACKEND_URL, TOKEN_NAME } from "../constants/config";
+import { BACKEND_URL, REFRESH_TOKEN, TOKEN } from "../constants/config";
 
 async function login(data) {
   return await http.post(`${BACKEND_URL}/users/login/`, data);
@@ -10,19 +12,31 @@ async function register(data) {
 }
 
 function logout() {
-  localStorage.removeItem(TOKEN_NAME);
+  localStorage.removeItem(TOKEN);
   return;
 }
 function setToken(token) {
-  localStorage.setItem(TOKEN_NAME, token);
+  localStorage.setItem(TOKEN, token);
   return;
 }
 function getToken() {
-  return window ? window.localStorage.getItem(TOKEN_NAME) : null;
+  return window ? window.localStorage.getItem(TOKEN) : null;
+}
+function getRefreshToken() {
+  return window ? window.localStorage.getItem(REFRESH_TOKEN) : null;
 }
 
 function isAuthenticated() {
-  return getToken() ? true : false;
+  const token = getToken();
+  if (!token) return false;
+  try {
+    const decodedToken = jwtDecode(token);
+    const currentTime = Date.now() / 1000;
+    return decodedToken.exp > currentTime;
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return false;
+  }
 }
 
 export default {
@@ -31,5 +45,6 @@ export default {
   logout,
   setToken,
   getToken,
+  getRefreshToken,
   isAuthenticated,
 };

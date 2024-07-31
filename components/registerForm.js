@@ -37,7 +37,7 @@ const RegisterForm = () => {
       auth.setToken(token);
       router.push("/home");
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error.response.data ? error.response.data : error);
     }
 
     return;

@@ -21,7 +21,7 @@ module.exports = {
         },
         // Add more custom colors here
 
-        red: "#FF204E",
+        fuschia: "#FF204E",
         maroon: "#A0153E",
         paleMaroon: "#5D0E41",
         navy: "#00224D",

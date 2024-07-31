@@ -19,5 +19,5 @@
 }
 
 .activeLink {
-    @apply text-red duration-300
+    @apply text-fuschia duration-300
 }
