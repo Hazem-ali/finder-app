@@ -4,20 +4,22 @@ import Input from "../common/input";
 import auth from "@/services/authService";
 import { useRouter } from "next/navigation";
 import Button from "../common/button";
-import { REFRESH_TOKEN, TOKEN } from "@/constants/config";
+import Message from "../common/message";
 
 const LoginForm = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [errorMessage, setErrorMessage] = useState();
   const router = useRouter();
   const handleLogin = async () => {
     try {
       const response = await auth.login({ email, password });
-      localStorage.setItem(TOKEN, response.data.access);
-      localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
+      auth.setToken(response.data.access);
+      auth.setRefreshToken(response.data.refresh);
       router.push("/home");
     } catch (error) {
       console.error(error.response.data.detail);
+      setErrorMessage("Invalid email or password");
     }
   };
 
@@ -30,7 +32,6 @@ const LoginForm = () => {
           id="login-email"
           placeholder="Email Address"
           changeHandler={setEmail}
-          
         />
         <Input
           type="password"
@@ -39,7 +40,7 @@ const LoginForm = () => {
           placeholder="Password"
           changeHandler={setPassword}
         />
-
+        {errorMessage && <Message type="error">{errorMessage}</Message>}
         <Button text="Login" onClick={handleLogin} />
       </div>
     </div>

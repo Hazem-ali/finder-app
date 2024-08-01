@@ -19,6 +19,10 @@ function setToken(token) {
   localStorage.setItem(TOKEN, token);
   return;
 }
+function setRefreshToken(token) {
+  localStorage.setItem(TOKEN, token);
+  return;
+}
 function getToken() {
   return window ? window.localStorage.getItem(TOKEN) : null;
 }
@@ -44,6 +48,7 @@ export default {
   register,
   logout,
   setToken,
+  setRefreshToken,
   getToken,
   getRefreshToken,
   isAuthenticated,

@@ -7,6 +7,9 @@
 .bgPrimary {
   @apply bg-jeansBlue hover:bg-jeansBlueLighter text-white;
 }
+.bgSuccess {
+  @apply bg-success hover:bg-successHover text-white;
+}
 .bgComp {
   @apply bg-[#ffb9c9] hover:bg-[#ea554b] hover:text-white;
 }

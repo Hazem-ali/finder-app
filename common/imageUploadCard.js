@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import Card from "./card";
 import Button from "@/common/button";
 import Image from "next/image";
+import { DEFAULT_UPLOAD_IMAGE } from "@/constants/config";
 
 const ImageUploadCard = ({ image,imageName, onImageChange }) => {
   const inputRef = useRef();
@@ -11,8 +12,7 @@ const ImageUploadCard = ({ image,imageName, onImageChange }) => {
     inputRef.current.click();
   };
 
-  image = image || "/images/upload.png";
-
+  const imageUrl = image ? URL.createObjectURL(image) : DEFAULT_UPLOAD_IMAGE;
   return (
     <Card height="h-[55vh]" width="w-1/3">
       <div
@@ -20,7 +20,7 @@ const ImageUploadCard = ({ image,imageName, onImageChange }) => {
         onClick={handleUpload}
       >
         <Image
-          src={image}
+          src={imageUrl}
           alt="Example image"
           layout="fill"
           objectFit="contain"

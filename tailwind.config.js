@@ -28,6 +28,8 @@ module.exports = {
         darkBlue: "#141E46",
         jeansBlue: "#0E46A3",
         jeansBlueLighter: "#125ad2",
+        success:"#14a44e",
+        successHover:"#008137",
 
         customBlue: "#007BFF",
         customGreen: "#28A745",
