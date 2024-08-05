@@ -5,8 +5,8 @@ const Textarea = ({ changeHandler, error, ...rest }) => {
     <div className="flex flex-col items-start">
       <textarea
         {...rest}
-        maxlength="1000"
-        className={`${inputStyles.input} h-20 max-h-40`}
+        maxLength="1000"
+        className={`${inputStyles.input} h-20 max-h-40 ${error && "border-error"}`}
         onChange={(event) => changeHandler(event.target.value)}
       />
       {error && <Message type="error">{error}</Message>}

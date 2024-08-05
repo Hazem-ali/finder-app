@@ -18,7 +18,7 @@ const LoginForm = () => {
       auth.setRefreshToken(response.data.refresh);
       router.push("/home");
     } catch (error) {
-      console.error(error.response.data.detail);
+      console.log(error)
       setErrorMessage("Invalid email or password");
     }
   };

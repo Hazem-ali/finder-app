@@ -1,40 +1,31 @@
 .input {
-  @apply   min-w-32 w-80 rounded-3xl px-3 py-1 text-black border-2 animated-input duration-300;
+  @apply min-w-32 w-80 rounded-3xl px-3 py-1 text-black border-2 animatedInput duration-300;
 }
 
-
-.animated-input {
+.animatedInput {
   transition: padding 0.3s ease;
 }
 
-.animated-input::placeholder {
-  color: #aaa;
+.animatedInput::placeholder {
+  color: #777777;
   opacity: 1;
   transition: opacity 0.5s ease;
 }
 
-.animated-input:focus::placeholder {
+.animatedInput:focus::placeholder {
   opacity: 0.3;
 }
 
-.animated-input:focus {
+.animatedInput:focus {
   padding-left: 1.3rem;
   outline: none;
 }
 
-
-
-
-
 .select {
-  @apply min-w-32 w-80 rounded-3xl px-3 py-1 text-black border-2 animatedSelect;
-  appearance: none;
+  @apply min-w-32 w-80 rounded-3xl px-2 py-1 text-black border-2 animatedSelect;
   background-color: white;
   border-radius: 1.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
-
 
 .animatedSelect {
   transition: padding 0.3s ease;
@@ -57,19 +48,7 @@
 
 .option {
   border-radius: 1rem;
-  padding: 6rem;
+  padding: 199rem;
 }
 
-.selectContainer {
-  position: relative;
-  display: inline-block;
-}
 
-.selectContainer::after {
-  content: '▼';
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  transform: translateY(-50%);
-  pointer-events: none;
-}

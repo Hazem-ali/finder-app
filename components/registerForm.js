@@ -5,39 +5,68 @@ import auth from "@/services/authService";
 import { useRouter } from "next/navigation";
 import Button from "../common/button";
 import Select from "../common/select";
+import { registerSchema } from "@/validations/registerSchema";
+import DatePicker from "@/common/datePicker";
 const RegisterForm = () => {
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
+  const [first_name, setFirstName] = useState();
+  const [last_name, setLastName] = useState();
   const [email, setEmail] = useState();
   const [gender, setGender] = useState();
   const [phone, setPhone] = useState();
   const [password, setPassword] = useState();
   const [password_confirm, setPasswordConfirm] = useState();
-  const [dateOfBirth, setDateOfBirth] = useState();
+  const [dob, setDateOfBirth] = useState();
+  const [errors, setErrors] = useState({});
 
   const router = useRouter();
 
   const registerHandler = async () => {
+    setErrors({});
     const data = {
-      first_name: firstName,
-      last_name: lastName,
-      dob: dateOfBirth,
+      first_name,
+      last_name,
+      dob,
       phone,
       email,
       gender,
       password,
       password_confirm,
     };
+
+    console.log(dob);
+    const validationResult = registerSchema.validate(data, {
+      abortEarly: false,
+    });
+
+    console.log(validationResult);
+    if (validationResult.error) {
+      const errorMessages = {};
+      validationResult.error.details.forEach((err) => {
+        errorMessages[err.context.key] = err.message;
+      });
+      setErrors(errorMessages);
+      return;
+    }
+
     try {
       const response = await auth.register(data);
-      console.log("Showing Response");
-      console.log(response);
+      console.log("Showing Response", response);
       // TODO use redux to store user data
       const token = response.data.access;
       auth.setToken(token);
       router.push("/home");
     } catch (error) {
-      console.log(error.response.data ? error.response.data : error);
+      console.log("error", error);
+      if (error.response.data) {
+        const errorMessages = {};
+        for (const [key, value] of Object.entries(error.response.data)) {
+          errorMessages[key] = value;
+        }
+        setErrors(errorMessages);
+      }
+      else {
+        alert(error)
+      }
     }
 
     return;
@@ -53,6 +82,7 @@ const RegisterForm = () => {
           placeholder="First Name"
           required={true}
           changeHandler={setFirstName}
+          error={errors.first_name}
         />
         <Input
           type="text"
@@ -60,15 +90,14 @@ const RegisterForm = () => {
           id="register-last-name"
           placeholder="Last Name"
           changeHandler={setLastName}
+          error={errors.last_name}
         />
 
-        <Input
-          type="text"
-          name="register-dob"
-          id="register-dob"
+        <DatePicker
           placeholder="Date Of Birth"
-          value="2015-03-25"
           changeHandler={setDateOfBirth}
+          format="Y-m-d"
+          error={errors.dob}
         />
 
         <Select
@@ -78,6 +107,7 @@ const RegisterForm = () => {
           ]}
           onSelect={(item) => setGender(item)}
           name="Select Gender"
+          error={errors.gender}
         />
         <Input
           type="email"
@@ -85,6 +115,7 @@ const RegisterForm = () => {
           id="register-email"
           placeholder="Email Address"
           changeHandler={setEmail}
+          error={errors.email}
         />
         <Input
           type="text"
@@ -92,6 +123,7 @@ const RegisterForm = () => {
           id="register-phone"
           placeholder="Phone Number"
           changeHandler={setPhone}
+          error={errors.phone}
         />
         <Input
           type="password"
@@ -99,6 +131,7 @@ const RegisterForm = () => {
           id="register-password"
           placeholder="Password"
           changeHandler={setPassword}
+          error={errors.password}
         />
         <Input
           type="password"
@@ -106,6 +139,7 @@ const RegisterForm = () => {
           id="register-confirm-password"
           placeholder="Confirm Password"
           changeHandler={setPasswordConfirm}
+          error={errors.password_confirm}
         />
         <Button text="Register" onClick={registerHandler} />
       </div>

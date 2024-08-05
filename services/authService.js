@@ -1,4 +1,4 @@
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 import http from "./httpService";
 import { BACKEND_URL, REFRESH_TOKEN, TOKEN } from "../constants/config";
@@ -13,6 +13,7 @@ async function register(data) {
 
 function logout() {
   localStorage.removeItem(TOKEN);
+  localStorage.removeItem(REFRESH_TOKEN);
   return;
 }
 function setToken(token) {
@@ -20,7 +21,7 @@ function setToken(token) {
   return;
 }
 function setRefreshToken(token) {
-  localStorage.setItem(TOKEN, token);
+  localStorage.setItem(REFRESH_TOKEN, token);
   return;
 }
 function getToken() {

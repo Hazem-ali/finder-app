@@ -2,8 +2,8 @@ import React from "react";
 
 const Message = ({ type, children }) => {
   const msgStyles = {
-    success: "bg-green-400",
-    error: "bg-red-400",
+    success: "bg-success",
+    error: "bg-error",
   };
   return (
     <div

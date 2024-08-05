@@ -30,6 +30,7 @@ module.exports = {
         jeansBlueLighter: "#125ad2",
         success:"#14a44e",
         successHover:"#008137",
+        error:"#fe6f52",
 
         customBlue: "#007BFF",
         customGreen: "#28A745",
