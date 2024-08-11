@@ -6,6 +6,7 @@ export default function Button({
   text,
   bg,
   onClick,
+  className,
   customClasses,
   href,
   ...rest
@@ -16,10 +17,10 @@ export default function Button({
   return (
     <button
       className={
-        customClasses || `w-3/12 grid ${buttonStyles.btn} ${buttonBackground}  `
+        className ||
+        `w-3/12 grid ${buttonStyles.btn} ${buttonBackground} ${customClasses}`
       }
-      onClick={(e) => {
-        // e.preventDefault();
+      onClick={() => {
         href && router.push(href);
         onClick && onClick();
       }}

@@ -7,12 +7,12 @@ export default function Home() {
   return (
     <div>
       <HeroBackground imgSrc="/images/lens.jpg" hasOverlay={true}>
-        <div className="flex  md:flex-row flex-col text-center  w-4/6 justify-center items-center  ">
+        <div className="flex w-4/6 flex-col items-center justify-center text-center md:flex-row">
           <div>
-            <h1 className="text-white font-bold text-7xl m-10">
+            <h1 className="m-10 text-7xl font-bold text-white">
               {APP_NAME}: Reuniting people
             </h1>
-            <h2 className="text-white text-3xl m-10">
+            <h2 className="m-10 text-3xl text-white">
               Our goal is to bring peace of mind by
               <p className="font-bold">
                 connecting lost loved ones with their families.
@@ -20,29 +20,31 @@ export default function Home() {
             </h2>
 
             <ProtectedComponent
-              component={<Button
-                text="Your Suspects"
-                customClasses={`z-20 ${styles.bgRed} ${styles.bigButton}`}
-                href="/suspects"
-              />}
-            
-              fallback={<Button
-                text="Get Started"
-                customClasses={`z-20 ${styles.bgRed} ${styles.bigButton}`}
-                href="/login"
-              />}
+              component={
+                <Button
+                  text="Your Suspects"
+                  className={`z-20 ${styles.bgRed} ${styles.bigButton}`}
+                  href="/suspects"
+                />
+              }
+              fallback={
+                <Button
+                  text="Get Started"
+                  className={`z-20 ${styles.bgRed} ${styles.bigButton}`}
+                  href="/login"
+                />
+              }
             />
-            
           </div>
         </div>
       </HeroBackground>
       <HeroBackground imgSrc="/images/lens.jpg" hasOverlay={true}>
-        <div className="flex  md:flex-row flex-col text-center  w-4/6 justify-center items-center  ">
+        <div className="flex w-4/6 flex-col items-center justify-center text-center md:flex-row">
           <div>
-            <h1 className="text-white font-bold text-7xl m-10">
+            <h1 className="m-10 text-7xl font-bold text-white">
               {APP_NAME}: Reuniting people
             </h1>
-            <h1 className="text-white text-3xl m-10">
+            <h1 className="m-10 text-3xl text-white">
               Our goal is to bring peace of mind by
               <p className="font-bold">
                 reuniting lost loved ones with their families.

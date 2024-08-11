@@ -5,7 +5,7 @@ const Hamburger = ({ onClick }) => {
   return (
     <div className="md:hidden">
       <span
-        className="flex flex-col justify-around mx-2 w-7 h-7 cursor-pointer"
+        className="mx-2 flex h-7 w-7 cursor-pointer flex-col justify-around"
         onClick={onClick}
       >
         <div className={barStyle}></div>

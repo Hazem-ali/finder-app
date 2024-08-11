@@ -1,3 +1,13 @@
+Make bg green for FOUND DONE
+create a toast DONE
+
+make suspect detail page -> add mark as resolved
+modify navbar buttons -> make hello sign in user
+make the list sortable and filterable 
+optimize suspect list to be serverside
+
+
+
 Consider to make a main navbar for the home
 make the resusable navbar to have dynamic buttons based on the page
 make this home page to be welcome page and shown only if not logged in

@@ -1,3 +1,4 @@
+'use client'
 import http from "./httpService";
 import auth from "./authService";
 import { BACKEND_URL } from "../constants/config";

@@ -1,7 +1,10 @@
+"use client";
 import { jwtDecode } from "jwt-decode";
-
 import http from "./httpService";
 import { BACKEND_URL, REFRESH_TOKEN, TOKEN } from "../constants/config";
+
+// Utility function to check if we're on the client side
+const isClient = typeof window !== "undefined";
 
 async function login(data) {
   return await http.post(`${BACKEND_URL}/users/login/`, data);
@@ -12,23 +15,33 @@ async function register(data) {
 }
 
 function logout() {
-  localStorage.removeItem(TOKEN);
-  localStorage.removeItem(REFRESH_TOKEN);
+  if (isClient) {
+    localStorage.removeItem(TOKEN);
+    localStorage.removeItem(REFRESH_TOKEN);
+  }
   return;
 }
+
 function setToken(token) {
-  localStorage.setItem(TOKEN, token);
+  if (isClient) {
+    localStorage.setItem(TOKEN, token);
+  }
   return;
 }
+
 function setRefreshToken(token) {
-  localStorage.setItem(REFRESH_TOKEN, token);
+  if (isClient) {
+    localStorage.setItem(REFRESH_TOKEN, token);
+  }
   return;
 }
+
 function getToken() {
-  return window ? window.localStorage.getItem(TOKEN) : null;
+  return isClient ? localStorage.getItem(TOKEN) : null;
 }
+
 function getRefreshToken() {
-  return window ? window.localStorage.getItem(REFRESH_TOKEN) : null;
+  return isClient ? localStorage.getItem(REFRESH_TOKEN) : null;
 }
 
 function isAuthenticated() {

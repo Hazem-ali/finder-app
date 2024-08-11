@@ -18,14 +18,14 @@ const LoginForm = () => {
       auth.setRefreshToken(response.data.refresh);
       router.push("/home");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setErrorMessage("Invalid email or password");
     }
   };
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center">
-      <div className="grid grid-cols-1 gap-4 mx-4 justify-items-center  ">
+    <div className="flex flex-col items-center justify-center gap-4">
+      <div className="mx-4 grid grid-cols-1 justify-items-center gap-4">
         <Input
           type="email"
           name="login-email"

@@ -39,7 +39,7 @@ const DatePicker = ({
   }, [time, format, changeHandler]);
 
   return (
-    <div className="flex flex-col items-start relative">
+    <div className="relative flex flex-col items-start">
       <input
         ref={dateInputRef}
         // onClick={handleClick}
