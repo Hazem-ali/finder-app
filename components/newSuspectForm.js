@@ -11,7 +11,6 @@ import { STATUS_OPTIONS } from "@/constants/config";
 import { createSuspectSchema } from "@/validations/createSuspectSchema";
 import DatePicker from "@/common/datePicker";
 import Toast from "@/common/toast/toast";
-import VerticalDivider from '../common/verticalDivider';
 
 const NewSuspectForm = () => {
   const [image, setImage] = useState();

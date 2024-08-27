@@ -11,7 +11,7 @@ const Like = ({ liked, onLikeToggle }) => {
   );
   return (
     <div
-      className="cursor-pointer transition-all hover:scale-125 duration-300 "
+      className="cursor-pointer transition-all duration-300 hover:scale-125"
       onClick={onLikeToggle}
     >
       {suitableIcon}

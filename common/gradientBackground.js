@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const heroBackgroundStyle = `
     relative bg-no-repeat bg-cover
     w-full min-h-screen
@@ -13,10 +12,7 @@ const GradientBackground = ({ gradientStyle, children }) => {
   };
 
   return (
-    <div
-      className={`${heroBackgroundStyle}`}
-      style={gradient}
-    >
+    <div className={`${heroBackgroundStyle}`} style={gradient}>
       {children}
     </div>
   );

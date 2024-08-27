@@ -10,7 +10,7 @@ export default function Suspects() {
         <h1 className="text-3xl">Add new suspect</h1>
         <Button
           text="New"
-          customClasses={`w-full grid ${btnStyles.btn} ${btnStyles.bgRed}`}
+          customClasses={` ${btnStyles.btn} ${btnStyles.bgRed}`}
           href="/suspects/new"
         />
       </div>

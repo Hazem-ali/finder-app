@@ -1,5 +1,5 @@
 "use client";
-import buttonStyles from "@/styles/global/button.module.css";
+import btnStyles from "@/styles/global/button.module.css";
 import { useRouter } from "next/navigation";
 
 export default function Button({
@@ -11,14 +11,14 @@ export default function Button({
   href,
   ...rest
 }) {
-  const buttonBackground = bg || buttonStyles.bgPrimary;
+  const buttonBackground = bg || btnStyles.bgPrimary;
   const router = useRouter();
 
   return (
     <button
       className={
         className ||
-        `w-3/12 grid ${buttonStyles.btn} ${buttonBackground} ${customClasses}`
+        `grid max-w-40 ${btnStyles.btn} ${buttonBackground} ${customClasses}`
       }
       onClick={() => {
         href && router.push(href);

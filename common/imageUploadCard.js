@@ -18,7 +18,7 @@ const ImageUploadCard = ({ image, imageName, onImageChange, error }) => {
     <div className="flex flex-col items-start">
       <Card height="h-full" customClasses="min-w-96">
         <div
-          className={`relative w-auto h-96 cursor-pointer `}
+          className={`relative h-96 w-auto cursor-pointer`}
           onClick={handleUpload}
         >
           <Image
@@ -30,13 +30,13 @@ const ImageUploadCard = ({ image, imageName, onImageChange, error }) => {
             priority
           />
         </div>
-        <div className="flex flex-col items-center mb-10">
+        <div className="mb-10 flex flex-col items-center">
           {imageName && (
             <div className="my-2 text-sm text-gray-600">{imageName}</div>
           )}
-          <div className="flex  items-center my-2">
+          <div className="my-2 flex items-center">
             <Button text="Upload" onClick={handleUpload} type="button" />
-            <h1 className="text-2xl mx-3">an image </h1>
+            <h1 className="mx-3 text-2xl">an image </h1>
             <input
               type="file"
               accept="image/*"

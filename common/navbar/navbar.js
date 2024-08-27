@@ -105,7 +105,7 @@ const Navbar = () => {
 
         {/* TODO isAuthenticated? Logout & profile image else Login */}
         {isLoggedIn ? (
-          <Button text="Logout" href="/home" onClick={handleLogout} />
+          <Button customClasses={` ${btnStyles.btn}`} text="Logout" href="/home" onClick={handleLogout} />
         ) : (
           <Button
             customClasses={`text-black z-20 ${btnStyles.bgRed} ${btnStyles.btn}`}

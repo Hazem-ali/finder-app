@@ -76,14 +76,14 @@ const Toast = ({ show, type, message, onClose }) => {
     show && (
       <div className="space-y-3">
         <div
-          className={`fixed right-0 top-24 mx-4 max-w-5xl z-10 rounded-xl border border-gray-200 ${bgColorClass} toastSlideIin shadow-lg`}
+          className={`fixed right-0 top-24 z-10 mx-4 max-w-5xl rounded-xl border border-gray-200 ${bgColorClass} toastSlideIin shadow-lg`}
           role="alert"
           tabIndex="-1"
         >
           <div className="flex items-center justify-center p-4">
             <div className="shrink-0">{icon}</div>
             <div className={`ms-3 ${colorClass}`}>
-              <p className="text-sm font-bold pr-7">
+              <p className="pr-7 text-sm font-bold">
                 {message || "Default message"}
               </p>
             </div>

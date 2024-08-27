@@ -7,7 +7,7 @@ const Message = ({ type, children }) => {
   };
   return (
     <div
-      className={`text-white text-xs font-bold mt-2 ${msgStyles[type]} rounded-full max-w-80 px-4 py-1 `}
+      className={`mt-2 text-xs font-bold text-white ${msgStyles[type]} max-w-80 rounded-full px-4 py-1`}
     >
       {children}
     </div>

@@ -1,5 +1,11 @@
 import React from "react";
 
+
+/**
+ * @author Hazem Ali
+ * @type Component
+ * @description Creates a div with a shadow style and flex column applied  
+ */
 const Card = ({
   width = "w-1/3",
   height = "h-96",
@@ -10,11 +16,11 @@ const Card = ({
 }) => {
   return (
     <div
-      {...rest}
-      className={
-        className ||
-        `${width} ${height} flex flex-col rounded-xl overflow-hidden shadow-lg relative ${customClasses}`
-      }
+    className={
+      className ||
+      `${width} ${height} flex flex-col rounded-xl overflow-hidden shadow-lg relative ${customClasses}`
+    }
+    {...rest}
     >
       {children}
     </div>

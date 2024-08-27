@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 
 const ProfileCard = ({ name, role, imageUrl, bio }) => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+    <div className="max-w-sm overflow-hidden rounded bg-white shadow-lg">
       <img className="w-full" src={imageUrl} alt="Profile" />
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{name}</div>
-        <p className="text-gray-700 text-base">{role}</p>
-        <p className="text-gray-700 text-base">{bio}</p>
+        <div className="mb-2 text-xl font-bold">{name}</div>
+        <p className="text-base text-gray-700">{role}</p>
+        <p className="text-base text-gray-700">{bio}</p>
       </div>
-      <div className="px-6 pt-4 pb-2">
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+      <div className="px-6 pb-2 pt-4">
+        <span className="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
           #profile
         </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+        <span className="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
           #developer
         </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+        <span className="mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
           #react
         </span>
       </div>

@@ -6,7 +6,7 @@ const Select = ({ name, error, options, onSelect }) => {
   return (
     <div className="flex flex-col items-start">
       <select
-        className={`${inputStyles.select}  ${error && "border-error"}`}
+        className={`${inputStyles.select} ${error && "border-error"}`}
         onChange={(e) => onSelect(e.target.value)}
       >
         <option value={name} hidden>
@@ -16,7 +16,7 @@ const Select = ({ name, error, options, onSelect }) => {
           <option
             key={item.value}
             value={item.value}
-            className={`${inputStyles.option} rounded-full `}
+            className={`${inputStyles.option} rounded-full`}
           >
             {item.name}
           </option>
