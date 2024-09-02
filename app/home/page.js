@@ -22,9 +22,9 @@ export default function Home() {
             <ProtectedComponent
               component={
                 <Button
-                  text="Your Suspects"
+                  text="Your Added Contacts"
                   className={`z-20 ${styles.bgRed} ${styles.bigButton}`}
-                  href="/suspects"
+                  href="/contacts"
                 />
               }
               fallback={

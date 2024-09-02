@@ -1,6 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import suspectsReducer from "./features/suspects/suspectsSlice";
+import contactsReducer from "./features/contacts/contactsSlice";
+import searchResults from "./features/contacts/searchSlice";
 
 export default combineReducers({
-  suspects: suspectsReducer,
+  contacts: contactsReducer,
+  searchResults,
 });

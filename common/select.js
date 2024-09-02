@@ -2,14 +2,16 @@ import React from "react";
 import inputStyles from "@/styles/global/input.module.css";
 import Message from "./message";
 
-const Select = ({ name, error, options, onSelect }) => {
+const Select = ({ name, error, value, options, onSelect, ...rest }) => {
   return (
     <div className="flex flex-col items-start">
       <select
         className={`${inputStyles.select} ${error && "border-error"}`}
         onChange={(e) => onSelect(e.target.value)}
+        value={value}
+        {...rest}
       >
-        <option value={name} hidden>
+        <option value="" hidden>
           {name}
         </option>
         {options.map((item) => (

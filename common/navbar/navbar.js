@@ -86,10 +86,10 @@ const Navbar = () => {
             </li>
             <li className={navStyles.linkListItem} onClick={handleListItem}>
               <Link
-                className={pathName === "/login" ? navStyles.activeLink : ""}
-                href="/login"
+                className={pathName === "/find" ? navStyles.activeLink : ""}
+                href="/find"
               >
-                Login
+                Find Contact
               </Link>
             </li>
             <li className={navStyles.linkListItem} onClick={handleListItem}>

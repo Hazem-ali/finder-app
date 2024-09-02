@@ -2,7 +2,7 @@ import React from "react";
 
 const Divider = ({ text }) => {
   return (
-    <div className="my-8 flex items-center justify-center">
+    <div className="my-4 flex items-center justify-center">
       <div className="flex w-screen items-center">
         <div className="h-px flex-grow bg-gradient-to-r from-transparent to-sky-400"></div>
         {text && (

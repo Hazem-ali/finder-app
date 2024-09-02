@@ -7,6 +7,8 @@ import Button from "../common/button";
 import Select from "../common/select";
 import { registerSchema } from "@/validations/registerSchema";
 import DatePicker from "@/common/datePicker";
+import { GENDERS } from "@/constants/config";
+
 const RegisterForm = () => {
   const [first_name, setFirstName] = useState();
   const [last_name, setLastName] = useState();
@@ -63,9 +65,8 @@ const RegisterForm = () => {
           errorMessages[key] = value;
         }
         setErrors(errorMessages);
-      }
-      else {
-        alert(error)
+      } else {
+        alert(error);
       }
     }
 
@@ -73,8 +74,8 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="flex flex-col  gap-4  justify-center items-center ">
-      <div className="grid grid-cols-1 gap-4 mx-4 justify-items-center">
+    <div className="flex flex-col items-center justify-center gap-4">
+      <div className="mx-4 grid grid-cols-1 justify-items-center gap-4">
         <Input
           type="text"
           name="register-first-name"
@@ -101,10 +102,7 @@ const RegisterForm = () => {
         />
 
         <Select
-          options={[
-            { name: "Male", value: "m" },
-            { name: "Female", value: "f" },
-          ]}
+          options={GENDERS}
           onSelect={(item) => setGender(item)}
           name="Select Gender"
           error={errors.gender}

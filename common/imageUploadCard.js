@@ -14,9 +14,11 @@ const ImageUploadCard = ({ image, imageName, onImageChange, error }) => {
   };
 
   const imageUrl = image ? URL.createObjectURL(image) : DEFAULT_UPLOAD_IMAGE;
+ 
+
   return (
     <div className="flex flex-col items-start">
-      <Card height="h-full" customClasses="min-w-96">
+      <Card height="h-full" customClasses="min-w-96 bg-gray-200">
         <div
           className={`relative h-96 w-auto cursor-pointer`}
           onClick={handleUpload}
