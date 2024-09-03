@@ -5,9 +5,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import btnStyles from "@/styles/global/button.module.css";
 import Button from "@/common/button";
-import { PLACEHOLDER_IMAGE } from "@/constants/config";
+import { GENDERS, PLACEHOLDER_IMAGE } from "@/constants/config";
 import { getContactById } from "@/redux/features/contacts/contactsSlice";
 import contactService from "@/services/contactService";
+import Modal from "../../../common/modal";
 const ContactDetail = (props) => {
   const { contactId } = props.params;
 
@@ -28,21 +29,25 @@ const ContactDetail = (props) => {
   const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
-    // handle when contactid is not in redux, to fetch from backend
-
     fetchContact(contactId);
   }, []);
 
   return (
     <div className="mt-5 flex justify-center">
-      <Card height="h-full" width="w-2/3" key={contact?.id}>
+      <Card
+        height="h-full"
+        width="w-3/4"
+        key={contact?.id}
+        customClasses="bg-rose-100"
+      >
         {/* Image Section */}
-        <div className="m-5 flex h-full flex-col  items-center md:flex-row md:items-stretch">
-          <div className="relative m-2 h-96 w-96 ">
+        <div className="flex h-full w-full flex-col items-center md:flex-row md:items-stretch">
+          <div className="relative m-8 min-h-32 min-w-32 cursor-pointer rounded-full">
             <Image
               src={contact?.image || PLACEHOLDER_IMAGE}
               alt={`Image of ${contact?.name}`}
-              fill
+              width={300}
+              height={300}
               style={{ objectFit: "cover", borderRadius:"100rem" }}
               priority
               unoptimized
@@ -51,49 +56,67 @@ const ContactDetail = (props) => {
           </div>
 
           {/* Details Section */}
-          <div className="mx-5 my-2 flex w-1/3 flex-col justify-between">
-            <div className="flex flex-col">
-              <h2 className="text-lg font-bold">Name: {contact?.name}</h2>
+          <div className="my-8 flex w-2/3 flex-col justify-between text-center md:text-left">
+            <div className="flex flex-col gap-1">
+              <h2 className="text-xl font-bold">{contact?.name}</h2>
               {contact?.national_id && (
-                <p className="text-sm text-gray-600">
-                  National ID: {contact?.national_id}
+                <p>
+                  National ID: {contact.national_id}
+                </p>
+              )}
+              {contact?.father && (
+                <p>
+                  Father: {contact.father}
+                </p>
+              )}
+              {contact?.mother && (
+                <p>
+                  Mother: {contact.mother}
+                </p>
+              )}
+              {contact?.gender && (
+                <p>
+                  Gender: {contact.gender === "m" ? "Male" : "Female"}
+                </p>
+              )}
+              {contact?.dob && (
+                <p>
+                  Date of Birth: {contact.dob}
                 </p>
               )}
             </div>
-            <div className="w-full">
+          </div>
+        </div>
+            <div className="my-5 flex w-full min-w-fit flex-col items-center justify-center gap-2 md:flex-row">
               <Button
-                text="Edit"
-                className={` ${btnStyles.btn} ${btnStyles.bgSuccess}`}
+                text="Edit Contact"
+                className={` ${btnStyles.btn} ${btnStyles.bgPrimary}`}
+                href={`/contacts/${contactId}/edit`}
+              />
+              <Button
+                text="Mark Missing"
+                className={` ${btnStyles.btn} ${btnStyles.bgPrimary}`}
+                href={`/contacts/${contactId}/edit`}
+              />
+              <Button
+                text="Mark Found"
+                className={` ${btnStyles.btn} ${btnStyles.bgPrimary}`}
                 href={`/contacts/${contactId}/edit`}
               />
             </div>
-          </div>
-        </div>
       </Card>
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-          onClick={closeModal}
-        >
-          <div className="relative p-5 bg-white rounded-lg">
-            <Image
-              src={contact?.image || PLACEHOLDER_IMAGE}
-              alt={`Full-size image of ${contact?.name}`}
-              width={500} // or any size you prefer
-              height={500} // or any size you prefer
-              style={{ objectFit: "contain" }}
-              priority
-              unoptimized
-            />
-            <button
-              onClick={closeModal}
-              className="absolute top-2 right-2 text-white bg-black rounded-full p-2"
-            >
-              X
-            </button>
-          </div>
-        </div>
-      )}
+
+      <Modal show={isModalOpen} onClose={closeModal}>
+        <Image
+          src={contact?.image || PLACEHOLDER_IMAGE}
+          alt={`Full-size image of ${contact?.name}`}
+          width={500}
+          height={500}
+          style={{ objectFit: "contain" }}
+          priority
+          unoptimized
+        />
+      </Modal>
     </div>
   );
 };
