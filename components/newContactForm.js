@@ -14,11 +14,11 @@ import {
   addContact,
   getContactById,
   modifyContact,
+  clearSearchResult,
 } from "@/redux/features/contacts/contactsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { urlToFile } from "@/utils/imageUtils";
 import { useRouter } from "next/navigation";
-import { clearResult } from "@/redux/features/contacts/searchSlice";
 
 const NewContactForm = ({ contactId }) => {
   const [name, setName] = useState();
@@ -127,7 +127,7 @@ const NewContactForm = ({ contactId }) => {
         const res = await contactService.modifyContact(contactId, formData);
         showToast("success", "Contact Modified successfully");
         dispatch(modifyContact(res.data));
-        dispatch(clearResult())
+        dispatch(clearSearchResult());
         router.push("/contacts");
       } else {
         const res = await contactService.createContact(formData);
@@ -135,7 +135,6 @@ const NewContactForm = ({ contactId }) => {
         showToast("success", "Contact Added successfully");
       }
       clearForm();
-      
     } catch (error) {
       if (error.response) {
         const errorMessages = {};

@@ -10,7 +10,7 @@ import contactService from "@/services/contactService";
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts);
+  const contacts = useSelector((state) => state.contacts.fetched);
   useEffect(() => {
     async function getContactList() {
       if (contacts.length === 0) {

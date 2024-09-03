@@ -11,7 +11,7 @@ import Divider from "../common/divider";
 import SearchResults from "./searchResults";
 import searchService from "@/services/searchService";
 import { useDispatch } from "react-redux";
-import { setResult } from "@/redux/features/contacts/searchSlice";
+import { setSearchResult } from "@/redux/features/contacts/contactsSlice";
 
 const searchOptions = [SEARCH_IMAGE, SEARCH_NAME_OR_NATIONALID];
 
@@ -42,12 +42,12 @@ export default function SearchContact() {
       // Send the image to the ML Search to retrieve results
       const response = await searchService.findByImage(image);
       if (response?.data) {
-        dispatch(setResult({ data: response.data }));
+        dispatch(setSearchResult({ data: response.data }));
       }
     } else {
       const response = await searchService.findByNameOrNationalId(searchInput);
       if (response?.data) {
-        dispatch(setResult({ data: response.data }));
+        dispatch(setSearchResult({ data: response.data }));
       }
     }
   };

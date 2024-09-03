@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 export default function SearchResults() {
 
-  const contacts = useSelector((state) => state.searchResults)
+  const contacts = useSelector((state) => state.contacts.searchResults)
 
 
   return (
