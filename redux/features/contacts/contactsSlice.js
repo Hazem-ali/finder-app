@@ -10,15 +10,20 @@ const contactSlice = createSlice({
     setContacts: (state, action) => {
       state.fetched = [...action.payload.data];
     },
-    addContact: (state, action) => {
-      state.fetched.push(action.payload);
+    addContactIfNotExists: (state, action) => {
+      const index = state.fetched.findIndex(
+        (contact) => contact.id === action.payload.id,
+      );
+      if (index === -1) {
+        state.fetched.push(action.payload);
+      }
     },
     modifyContact: (state, action) => {
       const index = state.fetched.findIndex(
         (contact) => contact.id === action.payload.id,
       );
       if (index !== -1) {
-        state[index] = { ...state[index], ...action.payload };
+        state.fetched[index] = { ...state.fetched[index], ...action.payload };
       }
     },
 
@@ -66,7 +71,7 @@ export const getContactById = (state, contactId) => {
 
 export const {
   setContacts,
-  addContact,
+  addContactIfNotExists,
   modifyContact,
   setSearchResult,
   clearSearchResult,

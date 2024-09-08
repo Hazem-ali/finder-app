@@ -6,12 +6,12 @@ import ImageUploadCard from "@/common/imageUploadCard";
 import Input from "@/common/input";
 import Select from "@/common/select";
 import contactService from "@/services/contactService";
-import { GENDERS } from "@/constants/config";
+import { GENDERS, STATUS_OPTIONS } from "@/constants/config";
 import { createContactSchema } from "@/validations/createContactSchema";
 import DatePicker from "@/common/datePicker";
 import Toast from "@/common/toast/toast";
 import {
-  addContact,
+  addContactIfNotExists,
   getContactById,
   modifyContact,
   clearSearchResult,
@@ -29,6 +29,7 @@ const NewContactForm = ({ contactId }) => {
   const [imageName, setImageName] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
+  const [status, setStatus] = useState("");
 
   const [errors, setErrors] = useState({});
 
@@ -120,18 +121,20 @@ const NewContactForm = ({ contactId }) => {
     formData.append("image", image);
     formData.append("dob", dob);
     formData.append("gender", gender);
+    formData.append("status", status);
 
     // Sending data to backend and updating Redux
     try {
       if (contactId) {
         const res = await contactService.modifyContact(contactId, formData);
         showToast("success", "Contact Modified successfully");
+        console.log(res.data);
         dispatch(modifyContact(res.data));
         dispatch(clearSearchResult());
         router.push("/contacts");
       } else {
         const res = await contactService.createContact(formData);
-        dispatch(addContact(res.data));
+        dispatch(addContactIfNotExists(res.data));
         showToast("success", "Contact Added successfully");
       }
       clearForm();
@@ -207,6 +210,14 @@ const NewContactForm = ({ contactId }) => {
             changeHandler={setMother}
             defaultValue={mother}
           />
+          {contactId && (
+            <Select
+              options={STATUS_OPTIONS}
+              onSelect={(item) => setStatus(item)}
+              name="Status"
+              value={status}
+            />
+          )}
         </div>
       </div>
       <Button

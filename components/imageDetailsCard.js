@@ -3,6 +3,7 @@ import { PLACEHOLDER_IMAGE } from "@/constants/config";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Status from "./Status";
 
 const ImageDetailsCard = ({ item }) => {
   return (
@@ -34,6 +35,8 @@ const ImageDetailsCard = ({ item }) => {
               National ID: {item.national_id}
             </p>
           )}
+          
+          {item.status && <Status status={item.status} />}
         </div>
       </Link>
     </Card>

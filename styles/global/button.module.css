@@ -10,6 +10,9 @@
 .bgSuccess {
   @apply bg-success hover:bg-successHover text-white;
 }
+.bgYellow {
+  @apply bg-yellow-400 hover:bg-yellow-500 text-black;
+}
 .bgComp {
   @apply bg-[#ffb9c9] hover:bg-[#ea554b] hover:text-white;
 }

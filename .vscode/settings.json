@@ -1,32 +1,36 @@
 {
-    "emmet.includeLanguages": {
-        "javascript": "javascriptreact"
-    },
-    "workbench.colorCustomizations": {
-        "activityBar.activeBackground": "#580245",
-        "activityBar.background": "#580245",
-        "activityBar.foreground": "#e7e7e7",
-        "activityBar.inactiveForeground": "#e7e7e799",
-        "activityBarBadge.background": "#627d03",
-        "activityBarBadge.foreground": "#e7e7e7",
-        "commandCenter.border": "#e7e7e799",
-        "sash.hoverBorder": "#580245",
-        "statusBar.background": "#26011e",
-        "statusBar.foreground": "#e7e7e7",
-        "statusBarItem.hoverBackground": "#580245",
-        "statusBarItem.remoteBackground": "#26011e",
-        "statusBarItem.remoteForeground": "#e7e7e7",
-        "titleBar.activeBackground": "#26011e",
-        "titleBar.activeForeground": "#e7e7e7",
-        "titleBar.inactiveBackground": "#26011e99",
-        "titleBar.inactiveForeground": "#e7e7e799"
-    },
-    "peacock.color": "#26011e",
-    "search.exclude": {
-        "**/node_modules": true,
-        "**/bower_components": true,
-        "**/*.code-search": true,
-      },
-
-
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#580245",
+    "activityBar.background": "#580245",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#627d03",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#580245",
+    "statusBar.background": "#26011e",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#580245",
+    "statusBarItem.remoteBackground": "#26011e",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#26011e",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#26011e99",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#26011e",
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true
+  },
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "typescript.enablePromptUseWorkspaceTsdk": false,
+  "typescript.tsdk": "",
+  "typescript.validate.enable": false,
+  "typescript.tsserver.enableTracing": false,
+  
 }
