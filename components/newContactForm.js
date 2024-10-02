@@ -19,6 +19,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { urlToFile } from "@/utils/imageUtils";
 import { useRouter } from "next/navigation";
+import Spinner from "@/common/spinner/spinner";
 
 const NewContactForm = ({ contactId }) => {
   const [name, setName] = useState();
@@ -32,6 +33,8 @@ const NewContactForm = ({ contactId }) => {
   const [status, setStatus] = useState("");
 
   const [errors, setErrors] = useState({});
+
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const [toastShow, setToastShow] = useState();
   const [toastType, setToastType] = useState("info");
@@ -112,6 +115,8 @@ const NewContactForm = ({ contactId }) => {
       return;
     }
 
+    setShowSpinner(true);
+
     // Preparing data for sending to backend
     const formData = new FormData();
     formData.append("name", name);
@@ -127,17 +132,22 @@ const NewContactForm = ({ contactId }) => {
     try {
       if (contactId) {
         const res = await contactService.modifyContact(contactId, formData);
-        showToast("success", "Contact Modified successfully");
-        console.log(res.data);
+
         dispatch(modifyContact(res.data));
         dispatch(clearSearchResult());
+
+        showToast("success", "Contact Modified successfully");
+
         router.push("/contacts");
       } else {
         const res = await contactService.createContact(formData);
+
         dispatch(addContactIfNotExists(res.data));
+
         showToast("success", "Contact Added successfully");
+
+        clearForm();
       }
-      clearForm();
     } catch (error) {
       if (error.response) {
         const errorMessages = {};
@@ -149,8 +159,19 @@ const NewContactForm = ({ contactId }) => {
         showToast("error", "An error occurred");
         console.error("An error occurred:", error.message);
       }
+    } finally {
+      setShowSpinner(false);
     }
   };
+
+  const submitButton = showSpinner ? (
+    <Spinner color="fuschia" />
+  ) : (
+    <Button
+      text="Submit"
+      customClasses={`${btnStyles.bigButton} ${btnStyles.bgSuccess}`}
+    />
+  );
 
   useEffect(() => {
     preloadForm();
@@ -172,16 +193,16 @@ const NewContactForm = ({ contactId }) => {
         <div className="flex max-h-fit flex-col gap-5">
           <Input
             placeholder="Name"
-            changeHandler={setName}
+            onChange={setName}
             error={errors.name}
-            defaultValue={name}
+            value={name}
           />
 
           <Input
             placeholder="National ID"
-            changeHandler={setNationalId}
+            onChange={setNationalId}
             error={errors.national_id}
-            defaultValue={national_id}
+            value={national_id}
           />
 
           <Select
@@ -194,21 +215,21 @@ const NewContactForm = ({ contactId }) => {
 
           <DatePicker
             placeholder="Date of birth"
-            changeHandler={setDob}
+            onChange={setDob}
             format="Y-m-d"
             error={errors.dob}
-            defaultValue={dob}
+            value={dob}
           />
 
           <Input
             placeholder="Father National ID"
-            changeHandler={setFather}
-            defaultValue={father}
+            onChange={setFather}
+            value={father}
           />
           <Input
             placeholder="Mother National ID"
-            changeHandler={setMother}
-            defaultValue={mother}
+            onChange={setMother}
+            value={mother}
           />
           {contactId && (
             <Select
@@ -220,10 +241,7 @@ const NewContactForm = ({ contactId }) => {
           )}
         </div>
       </div>
-      <Button
-        text="Submit"
-        customClasses={`${btnStyles.bigButton} ${btnStyles.bgSuccess}`}
-      />
+      {submitButton}
 
       <Toast
         show={toastShow}

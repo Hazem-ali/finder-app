@@ -7,8 +7,8 @@ import React from "react";
  * @description Creates a div with a shadow style and flex column applied  
  */
 const Card = ({
-  width = "w-1/3",
-  height = "h-96",
+  width = "min-w-1/3",
+  height = "min-h-96",
   className,
   customClasses,
   children,

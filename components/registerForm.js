@@ -82,7 +82,7 @@ const RegisterForm = () => {
           id="register-first-name"
           placeholder="First Name"
           required={true}
-          changeHandler={setFirstName}
+          onChange={(e) => setFirstName(e.target.value)}
           error={errors.first_name}
         />
         <Input
@@ -90,7 +90,7 @@ const RegisterForm = () => {
           name="register-last-name"
           id="register-last-name"
           placeholder="Last Name"
-          changeHandler={setLastName}
+          onChange={(e) => setLastName(e.target.value)}
           error={errors.last_name}
         />
 
@@ -112,7 +112,7 @@ const RegisterForm = () => {
           name="register-email"
           id="register-email"
           placeholder="Email Address"
-          changeHandler={setEmail}
+          onChange={(e) => setEmail(e.target.value)}
           error={errors.email}
         />
         <Input
@@ -120,7 +120,7 @@ const RegisterForm = () => {
           name="register-phone"
           id="register-phone"
           placeholder="Phone Number"
-          changeHandler={setPhone}
+          onChange={(e) => setPhone(e.target.value)}
           error={errors.phone}
         />
         <Input
@@ -128,7 +128,7 @@ const RegisterForm = () => {
           name="register-password"
           id="register-password"
           placeholder="Password"
-          changeHandler={setPassword}
+          onChange={(e) => setPassword(e.target.value)}
           error={errors.password}
         />
         <Input
@@ -136,7 +136,7 @@ const RegisterForm = () => {
           name="register-confirm-password"
           id="register-confirm-password"
           placeholder="Confirm Password"
-          changeHandler={setPasswordConfirm}
+          onChange={(e) => setPasswordConfirm(e.target.value)}
           error={errors.password_confirm}
         />
         <Button text="Register" onClick={registerHandler} />

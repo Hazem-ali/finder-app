@@ -2,7 +2,7 @@ import React from "react";
 
 const heroBackgroundStyle = `
     relative bg-no-repeat bg-cover
-    w-full min-h-screen
+    w-full 
     flex justify-center 
     z-10 
 `;

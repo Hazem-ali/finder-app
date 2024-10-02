@@ -5,11 +5,9 @@ const overlayStyle = `
     before:top-0 before:left-0 before:w-full before:h-full before:content-['']
     before:bg-black before:opacity-50 before:-z-10 
   `;
-
 const heroBackgroundStyle = `
     relative bg-no-repeat bg-cover
     w-full h-screen 
-    flex justify-center 
     z-10 
 `;
 const HeroBackground = ({ imgSrc, hasOverlay, children }) => {

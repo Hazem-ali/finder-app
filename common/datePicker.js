@@ -9,7 +9,7 @@ const dateTime = "Y-m-d H:i";
 
 const DatePicker = ({
   time = false,
-  changeHandler,
+   changeHandler,
   error,
   format,
   ...rest

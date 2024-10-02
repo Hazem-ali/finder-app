@@ -8,6 +8,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        'bottom-up': {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
+      animation: {
+        'bottom-up': 'bottom-up 1s ease-out',
+      },
       colors: {
         primary: {
           light: "#FF204E", // You can add your custom colors here

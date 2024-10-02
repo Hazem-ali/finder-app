@@ -63,10 +63,10 @@ const ContactDetail = (props) => {
   return (
     <div className="mt-5 flex justify-center">
       <Card
-        height="h-full"
+        height="h-3/4"
         width="w-3/4"
         key={contact?.id}
-        customClasses="bg-rose-100"
+        customClasses="bg-rose-100 my-10"
       >
         {/* Image Section */}
         <div className="flex h-full w-full flex-col items-center md:flex-row md:items-stretch">

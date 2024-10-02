@@ -36,16 +36,16 @@ const Navbar = () => {
 
   const isScrolledOverThreshold = useCallback(
     (threshold) => scrollPosition > threshold,
-    [scrollPosition]
+    [scrollPosition],
   );
 
   const modifyNavOnScroll = useCallback(() => {
     if (isScrolledOverThreshold(SCROLL_THRESHOLD)) {
       // Scrolled, then modify nav
-      setNavScrollTheme("bg-jeansBlue text-white");
+      setNavScrollTheme("bg-slate-950 text-white");
       setNavHeight("h-16");
     } else {
-      setNavScrollTheme("bg-darkBlue text-white");
+      setNavScrollTheme("bg-navy text-white");
       setNavHeight("h-20");
     }
   }, [isScrolledOverThreshold]);
@@ -59,21 +59,20 @@ const Navbar = () => {
     <header className="mb-20">
       <Backdrop show={isMenuOpen} onClick={toggleMenu} />
       <nav className={`${navScrollTheme} ${navHeight} ${navStyles.mainNav}`}>
-        <section className="flex items-center justify-center z-20">
+        <section className="z-20 flex items-center justify-center">
           {/* hamburger menu */}
           <Hamburger isOpen={isMenuOpen} onClick={toggleMenu} />
 
           {/* icon */}
           <div>
-            <a href="/login" className="w-7 inline">
-              <img className="w-8 mx-2" src="/images/cd.png" alt="icon" />
+            <a href="/login" className="inline w-7">
+              <img className="mx-2 w-8" src="/images/cd.png" alt="icon" />
             </a>
           </div>
         </section>
 
         <section
-          className={`${navScrollTheme} ${navStyles.navLinksDiv}
-            ${isMenuOpen ? "top-[99%] " : "top-[-60vh]"}`}
+          className={`${navScrollTheme} ${navStyles.navLinksDiv} ${isMenuOpen ? "top-[99%]" : "top-[-60vh]"}`}
         >
           <ul className={navStyles.linkList}>
             <li className={navStyles.linkListItem} onClick={handleListItem}>
@@ -94,10 +93,12 @@ const Navbar = () => {
             </li>
             <li className={navStyles.linkListItem} onClick={handleListItem}>
               <Link
-                className={pathName === "/register" ? navStyles.activeLink : ""}
-                href="/register"
+                className={
+                  pathName === "/contacts/new" ? navStyles.activeLink : ""
+                }
+                href="/contacts/new"
               >
-                Start Hosting
+                Add Contact
               </Link>
             </li>
           </ul>
@@ -105,7 +106,12 @@ const Navbar = () => {
 
         {/* TODO isAuthenticated? Logout & profile image else Login */}
         {isLoggedIn ? (
-          <Button customClasses={` ${btnStyles.btn}`} text="Logout" href="/home" onClick={handleLogout} />
+          <Button
+            customClasses={` ${btnStyles.btn}`}
+            text="Logout"
+            href="/home"
+            onClick={handleLogout}
+          />
         ) : (
           <Button
             customClasses={`text-black z-20 ${btnStyles.bgRed} ${btnStyles.btn}`}

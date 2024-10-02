@@ -8,9 +8,7 @@ export default function Radio({
   horizontal = false,
 }) {
   return (
-    <div
-      className={`flex flex-col  ${horizontal && "md:flex-row"}`}
-    >
+    <div className={`flex flex-col my-5 ${horizontal && "md:flex-row"}`}>
       {choices.map((choice) => {
         return (
           <div key={choice}>

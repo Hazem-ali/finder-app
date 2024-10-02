@@ -1,12 +1,16 @@
 "use client";
 
 import auth from "@/services/authService";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function ProtectedComponent({ component, fallback = null }) {
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  
+  useEffect(() => {
+    setIsAuthenticated ( auth.isAuthenticated())
+  }, []);
+
   return (
-    <React.Fragment>
-      {auth.isAuthenticated() ? component : fallback}
-    </React.Fragment>
+    <React.Fragment>{isAuthenticated ? component : fallback}</React.Fragment>
   );
 }

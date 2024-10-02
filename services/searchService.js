@@ -7,15 +7,17 @@ const Authorization = `Bearer ${auth.getToken()}`;
 async function findByNameOrNationalId(searchInput) {
   return await http.get(`${BACKEND_URL}/contacts/search/`, {
     params: { search: searchInput },
-    // headers: { Authorization },
+    headers: { Authorization },
   });
 }
 
-async function findByImage(image) {
-  return null;
-  // return await http.post(`${BACKEND_URL}/contacts/`, data, {
-  //   headers: { Authorization },
-  // });
+async function findByImage(formData) {
+  return await http.post(`${BACKEND_URL}/contacts/search/image/`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      // Authorization
+    },
+  });
 }
 
 export default {

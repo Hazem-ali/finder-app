@@ -31,14 +31,14 @@ const LoginForm = () => {
           name="login-email"
           id="login-email"
           placeholder="Email Address"
-          changeHandler={setEmail}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <Input
           type="password"
           name="login-password"
           id="login-password"
           placeholder="Password"
-          changeHandler={setPassword}
+          onChange={(e) => setPassword(e.target.value)}
         />
         {errorMessage && <Message type="error">{errorMessage}</Message>}
         <Button text="Login" onClick={handleLogin} />
