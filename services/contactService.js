@@ -12,7 +12,7 @@ async function createContact(data) {
 }
 
 async function modifyContact(id, data) {
-  return await http.put(`${BACKEND_URL}/contacts/${id}`, data, {
+  return await http.put(`${BACKEND_URL}/contacts/${id}/`, data, {
     headers: { Authorization },
   });
 }
@@ -29,9 +29,17 @@ async function getContactList() {
   });
 }
 
+async function getContactStatusHistory(id) {
+  return await http.get(`${BACKEND_URL}/contacts/${id}/history`, {
+    headers: { Authorization },
+  });
+  
+}
+
 export default {
   createContact,
   getContactList,
   modifyContact,
   getContact,
+  getContactStatusHistory,
 };

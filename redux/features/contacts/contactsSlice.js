@@ -58,13 +58,21 @@ const contactSlice = createSlice({
 
 // Selector to get a contact by ID
 export const getContactById = (state, contactId) => {
-  let contact = state.contacts.fetched.find(
-    (contact) => contact.id == contactId,
-  );
-  if (!contact) {
-    contact = state.contacts.searchResults.find(
-      (contact) => contact.id == contactId,
-    );
+  let contact;
+
+  try {
+    if (state.contacts.fetched) {
+      contact = state.contacts.fetched.find(
+        (contact) => contact.id == contactId,
+      );
+    }
+    if (!contact && state.contacts.searchResults) {
+      contact = state.contacts.searchResults.find(
+        (contact) => contact.id == contactId,
+      );
+    }
+  } catch (error) {
+    contact = null;
   }
   return contact;
 };

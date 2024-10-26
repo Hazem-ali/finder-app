@@ -146,8 +146,7 @@ export default function SearchContact() {
     <Button
       text={
         <div className="flex items-center justify-center">
-          Search
-          <span className="ml-2">
+          <span className="mr-2">
             <Image
               src="/images/search-icon.svg"
               width="20"
@@ -155,6 +154,7 @@ export default function SearchContact() {
               alt="Search Icon"
             />
           </span>
+          Search
         </div>
       }
       onClick={handleSearch}

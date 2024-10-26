@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../common/input";
 import auth from "@/services/authService";
 import { useRouter } from "next/navigation";
@@ -16,12 +16,17 @@ const LoginForm = () => {
       const response = await auth.login({ email, password });
       auth.setToken(response.data.access);
       auth.setRefreshToken(response.data.refresh);
-      router.push("/home");
+      router.replace("/home");
     } catch (error) {
       console.log(error);
       setErrorMessage("Invalid email or password");
     }
   };
+  useEffect(() => {
+    if (auth.isAuthenticated()) {
+      router.replace("/home");
+    }
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">

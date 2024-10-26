@@ -22,9 +22,9 @@ export const registerSchema = Joi.object({
       "any.required": "Email is required.",
     }),
 
-  gender: Joi.string().required().messages({
-    "any.required": "Please select your gender.",
-  }),
+  // gender: Joi.string().required().messages({
+  //   "any.required": "Please select your gender.",
+  // }),
 
   phone: Joi.string()
     .pattern(new RegExp("^[0-9]{10,15}$"))
@@ -54,7 +54,5 @@ export const registerSchema = Joi.object({
     "any.required": "Password confirmation is required.",
   }),
 
-  dob: Joi.date().required().messages({
-    "any.required": "Date of Birth is required.",
-  }),
+
 });

@@ -8,7 +8,7 @@ export default function ProtectedComponent({ component, fallback = null }) {
   
   useEffect(() => {
     setIsAuthenticated ( auth.isAuthenticated())
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <React.Fragment>{isAuthenticated ? component : fallback}</React.Fragment>

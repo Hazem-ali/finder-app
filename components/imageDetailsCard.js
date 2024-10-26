@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Status from "./Status";
+import Label from "@/common/label";
 
 const ImageDetailsCard = ({ item }) => {
   return (
@@ -29,14 +30,21 @@ const ImageDetailsCard = ({ item }) => {
 
         {/* Details Section */}
         <div className="mb-2 mt-5 flex flex-col items-center">
-          <h2 className="text-lg font-bold">Name: {item.name}</h2>
+          <h2 className="text-lg font-bold">Name: {item.full_name}</h2>
           {item.national_id && (
-            <p className="text-sm text-gray-600">
+            <p className=" my-2 text-sm text-gray-600">
               National ID: {item.national_id}
             </p>
           )}
           
           {item.status && <Status status={item.status} />}
+          {item.confidence && (
+            <div className="my-2">
+              <Label text={`Confidence: ${item.confidence} %`}/>
+            </div>
+          )
+          }
+
         </div>
       </Link>
     </Card>

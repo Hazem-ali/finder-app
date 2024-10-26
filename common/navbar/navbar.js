@@ -24,7 +24,7 @@ const Navbar = () => {
     auth.logout();
     setIsLoggedIn(false);
     setIsMenuOpen(false);
-    router.refresh();
+    router.replace('/login');
   };
 
   const handleListItem = () => {

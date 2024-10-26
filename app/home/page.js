@@ -6,14 +6,14 @@ import ImageSideSection from "./imageSideSection";
 import AnimatedSection from "./animatedSection";
 import GradientBackground from "@/common/gradientBackground";
 import BulletPointsSection from "./bulletPointsSection";
-import MainHomeButton from './mainHomeButton';
+import MainHomeButton from "./mainHomeButton";
 
 export default function Home() {
   return (
     <div>
       <HeroBackground imgSrc="/images/lens.jpg" hasOverlay>
         <div className="flex h-full w-full flex-col items-center justify-center text-center md:flex-row">
-          <div>
+          <div className="flex flex-col items-center">
             <AnimatedComponent triggerOnce animationClasses="animate-bottom-up">
               <h1 className="m-10 text-7xl font-bold text-white">
                 {APP_NAME}: Reuniting people
@@ -25,7 +25,7 @@ export default function Home() {
                 </p>
               </h2>
             </AnimatedComponent>
-            <MainHomeButton/>
+            <MainHomeButton />
           </div>
         </div>
       </HeroBackground>

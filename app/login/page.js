@@ -7,7 +7,7 @@ export default function Signin() {
   return (
     <div>
       <GradientBackground gradientStyle="linear-gradient(45deg, rgba(5,3,80,1) 0%, rgba(32,0,64,1) 50%, rgba(0,0,0,1) 100%)">
-        <div className="m-20 flex w-5/6 flex-col">
+        <div className="m-20 flex w-5/6 flex-col h-screen">
           <div className="flex flex-col text-center">
             <h1 className="mb-10 select-none text-2xl font-bold text-white">
               Sign in

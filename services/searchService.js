@@ -4,10 +4,15 @@ import auth from "./authService";
 import { BACKEND_URL } from "../constants/config";
 const Authorization = `Bearer ${auth.getToken()}`;
 
+async function findById(id) {
+  return await http.get(`${BACKEND_URL}/contacts/${id}`, {
+    // headers: { Authorization },
+  });
+}
 async function findByNameOrNationalId(searchInput) {
   return await http.get(`${BACKEND_URL}/contacts/search/`, {
     params: { search: searchInput },
-    headers: { Authorization },
+    // headers: { Authorization },
   });
 }
 
@@ -21,6 +26,7 @@ async function findByImage(formData) {
 }
 
 export default {
+  findById,
   findByNameOrNationalId,
   findByImage,
 };

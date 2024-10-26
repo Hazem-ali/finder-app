@@ -13,11 +13,9 @@ const RegisterForm = () => {
   const [first_name, setFirstName] = useState();
   const [last_name, setLastName] = useState();
   const [email, setEmail] = useState();
-  const [gender, setGender] = useState();
   const [phone, setPhone] = useState();
   const [password, setPassword] = useState();
   const [password_confirm, setPasswordConfirm] = useState();
-  const [dob, setDateOfBirth] = useState();
   const [errors, setErrors] = useState({});
 
   const router = useRouter();
@@ -27,15 +25,12 @@ const RegisterForm = () => {
     const data = {
       first_name,
       last_name,
-      dob,
       phone,
       email,
-      gender,
       password,
       password_confirm,
     };
 
-    console.log(dob);
     const validationResult = registerSchema.validate(data, {
       abortEarly: false,
     });
@@ -94,19 +89,20 @@ const RegisterForm = () => {
           error={errors.last_name}
         />
 
-        <DatePicker
+        {/* <DatePicker
           placeholder="Date Of Birth"
           changeHandler={setDateOfBirth}
           format="Y-m-d"
           error={errors.dob}
-        />
-
+        /> */}
+        {/* 
         <Select
           options={GENDERS}
           onSelect={(item) => setGender(item)}
           name="Select Gender"
           error={errors.gender}
-        />
+        /> */}
+        
         <Input
           type="email"
           name="register-email"

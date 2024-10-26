@@ -20,17 +20,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { urlToFile } from "@/utils/imageUtils";
 import { useRouter } from "next/navigation";
 import Spinner from "@/common/spinner/spinner";
+import ModalMessage from "@/common/modalMessage";
 
 const NewContactForm = ({ contactId }) => {
   const [name, setName] = useState();
   const [national_id, setNationalId] = useState();
-  const [father, setFather] = useState();
-  const [mother, setMother] = useState();
+  const [father, setFather] = useState(null);
+  const [mother, setMother] = useState(null);
   const [image, setImage] = useState();
   const [imageName, setImageName] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("NORMAL");
+
+  const [showModal, setShowModal] = useState(false);
+  const [popupMessage, setPopupMessage] = useState({});
 
   const [errors, setErrors] = useState({});
 
@@ -57,6 +61,14 @@ const NewContactForm = ({ contactId }) => {
     setImageName("");
   };
 
+  const showModalMessage = (popupMessage) => {
+    setPopupMessage(popupMessage);
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   const preloadForm = async () => {
     // Preload contact data in case of modifying contact
     if (contactId) {
@@ -66,13 +78,14 @@ const NewContactForm = ({ contactId }) => {
       }
       setName(fetchedContact.name);
       setNationalId(fetchedContact.national_id);
-      setFather(fetchedContact.father);
-      setMother(fetchedContact.mother);
+      setFather(fetchedContact.father?.national_id);
+      setMother(fetchedContact.mother?.national_id);
       setDob(fetchedContact.dob);
       setGender(fetchedContact.gender);
       if (fetchedContact.image) {
         setImage(await urlToFile(fetchedContact.image));
       }
+      setStatus(fetchedContact.status);
     }
   };
 
@@ -149,10 +162,14 @@ const NewContactForm = ({ contactId }) => {
         clearForm();
       }
     } catch (error) {
+      console.log("showing error, ", error);
       if (error.response) {
         const errorMessages = {};
         for (const [key, value] of Object.entries(error.response.data)) {
           errorMessages[key] = value;
+          if (key === "detail" || key === "message") {
+            showToast("error", value);
+          }
         }
         setErrors(errorMessages);
       } else {
@@ -193,14 +210,14 @@ const NewContactForm = ({ contactId }) => {
         <div className="flex max-h-fit flex-col gap-5">
           <Input
             placeholder="Name"
-            onChange={setName}
+            onChange={(e) => setName(e.target.value)}
             error={errors.name}
             value={name}
           />
 
           <Input
             placeholder="National ID"
-            onChange={setNationalId}
+            onChange={(e) => setNationalId(e.target.value)}
             error={errors.national_id}
             value={national_id}
           />
@@ -215,7 +232,7 @@ const NewContactForm = ({ contactId }) => {
 
           <DatePicker
             placeholder="Date of birth"
-            onChange={setDob}
+            changeHandler={setDob}
             format="Y-m-d"
             error={errors.dob}
             value={dob}
@@ -223,12 +240,12 @@ const NewContactForm = ({ contactId }) => {
 
           <Input
             placeholder="Father National ID"
-            onChange={setFather}
+            onChange={(e) => setFather(e.target.value)}
             value={father}
           />
           <Input
             placeholder="Mother National ID"
-            onChange={setMother}
+            onChange={(e) => setMother(e.target.value)}
             value={mother}
           />
           {contactId && (
@@ -241,13 +258,23 @@ const NewContactForm = ({ contactId }) => {
           )}
         </div>
       </div>
+      <div className="my-5">
+        
       {submitButton}
+      </div>
 
       <Toast
         show={toastShow}
         type={toastType}
         message={toastMessage}
         onClose={() => setToastShow(false)}
+      />
+      <ModalMessage
+        show={showModal}
+        message={popupMessage.message}
+        title={popupMessage.title}
+        type={popupMessage.type}
+        onClose={closeModal}
       />
     </form>
   );
